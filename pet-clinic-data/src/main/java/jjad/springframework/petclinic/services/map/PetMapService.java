@@ -1,14 +1,13 @@
 package jjad.springframework.petclinic.services.map;
 
 import jjad.springframework.petclinic.model.Pet;
-import jjad.springframework.petclinic.services.CrudService;
 import jjad.springframework.petclinic.services.PetService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class PetServiceMap
+public class PetMapService
         extends AbstractMapService<Pet, Long>
         implements PetService{
 
