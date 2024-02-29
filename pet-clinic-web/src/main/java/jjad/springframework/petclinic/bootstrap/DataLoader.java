@@ -1,10 +1,7 @@
 package jjad.springframework.petclinic.bootstrap;
 
 import jjad.springframework.petclinic.model.*;
-import jjad.springframework.petclinic.services.OwnerService;
-import jjad.springframework.petclinic.services.PetTypeService;
-import jjad.springframework.petclinic.services.SpecialtyService;
-import jjad.springframework.petclinic.services.VetService;
+import jjad.springframework.petclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +14,15 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
     public DataLoader(OwnerService ownerService, VetService vetService,
-                      PetTypeService petTypeService, SpecialtyService specialtyService){
+                      PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService){
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -94,6 +93,15 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner);
 
         System.out.println("Loaded Owners.......");
+
+        Visit visit = new Visit();
+        visit.setPet(jesusPet);
+        visit.setDescription("Sneezy kitty");
+        visit.setDate(LocalDate.now());
+
+        visitService.save(visit);
+
+        System.out.println("Loaded Visits.......");
 
         Vet vet = new Vet();
         vet.setFirstName("Joe");
