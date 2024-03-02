@@ -1,9 +1,15 @@
 package jjad.springframework.petclinic.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "visits")
 public class Visit extends BaseEntity{
