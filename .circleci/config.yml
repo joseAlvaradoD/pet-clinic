@@ -6,7 +6,7 @@ executors:
   java17:
     docker:
       - image: 'cimg/openjdk:17.0'
-      
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
@@ -29,10 +29,12 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
+          executor: java17
       # Then run your tests!
       - run:
           name: Test
           command: mvn test
+          executor: java17
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
